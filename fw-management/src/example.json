@@ -1,0 +1,12 @@
+{
+  "derave1.local": {
+    "/api/login": [
+      "xss", "sqli"
+    ],
+    "*": []
+  },
+  "derave2.local": {
+    "/": [],
+    "*": []
+  }
+}
