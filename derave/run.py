@@ -6,5 +6,5 @@ HOST = '127.0.0.2'
 
 init_db()
 
-app.run(host=HOST, port=PORT, debug=True, use_evalex=False)
+app.run(host=HOST, port=PORT, debug=False, use_evalex=False)
 

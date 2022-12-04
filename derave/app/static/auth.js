@@ -1,7 +1,6 @@
 async function login() {
   n = document.getElementById('auth_name').value
   p = document.getElementById('auth_pass').value
-  console.log(n, p)
   fetch('/api/login', {
     method: 'POST',
     headers: {
@@ -13,7 +12,11 @@ async function login() {
     })
   }).then((response) => response.json())
     .then((data) => {
-      window.location.href = '/';
+      if (Object.keys(data).includes('error') && data['error'] == true) {
+        document.getElementById('error').innerHTML = 'Request blocked. Reason: ' + data['reason'];
+      } else {
+        window.location.href = '/';
+      }
     });
 }
 
@@ -33,7 +36,12 @@ async function register() {
       "pass": p
     })
   }).then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      if (Object.keys(data).includes('error') && data['error'] == true) {
+        document.getElementById('error').innerHTML = 'Request blocked. Reason: ' + data['reason'];
+      }
+      console.log(data)
+    });
 }
 
 async function logout() {

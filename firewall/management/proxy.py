@@ -19,8 +19,8 @@ def check_req(path, rules, to_check, direction):
           if r == False:
             print('[BLOCKED]:', to_check)
             return {
-              "status": "blocked", 
-              "reason": "xss"
+              "error": True, 
+              "reason": "XSS detected."
             }
         elif x['type'] == 'sqli':
           r = anti_sqli.check(to_check)
@@ -28,8 +28,8 @@ def check_req(path, rules, to_check, direction):
           if r == False:
             print('[BLOCKED]:', to_check)
             return {
-              "status": "blocked", 
-              "reason": "sqli"
+              "error": True, 
+              "reason": "SQLi detected."
             }
   return None
 

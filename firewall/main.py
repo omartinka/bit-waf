@@ -2,10 +2,11 @@ import sys
 
 def print_help():
   print('Usage: python main.py [args]')
-  print('  --xss <name>  : specifies model for xss checking, in ./data folder')
-  print('  --sqli <name> : specifies model for sqli checking, in ./data folder')
-  print('  --train       : trains the model on startup. takes a few seconds.')
-  print('  --help        : displays help and exits')
+  print('  --xss <name>        : specifies model for xss checking, in ./data folder')
+  print('  --sqli <name>       : specifies model for sqli checking, in ./data folder')
+  print('  --train-xss <data>  : trains the xss detection model on startup. needs dataset name <data> placed in ./data folder. takes a few seconds.')
+  print('  --train-sqli <data> : trains the sqli detection model on startup. needs dataset name <data> placed in ./data folder. takes a few seconds.')
+  print('  --help              : displays help and exits')
 
 if '--help' in sys.argv or '-h' in sys.argv:
   print_help()

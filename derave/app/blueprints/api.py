@@ -20,18 +20,23 @@ def login():
 
   user = login_user(username, password)
   if user is None:
-    abort(403)
+    return jsonify({
+      "error": True,
+      "reason": "incorrect password."
+    })
 
   b64 = b64encode(json.dumps(user).encode()).decode()
   
-  res = jsonify(user)
+  toret = {"error": False, "user": user }
+
+  res = jsonify(toret)
   res.set_cookie('auth', b64)
   
   return res
 
 @api.route('/health', methods=['GET'])
 def health():
-  return jsonify({'health': 'OK'})
+  return jsonify({'error': False, 'health': 'OK'})
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -42,9 +47,12 @@ def register():
 
   user = register_user(username, password)
   if user is None:
-    abort(403)
-
-  return jsonify(user)
+     return jsonify({
+      "error": True,
+      "reason": "error while creating user."
+    })
+  toret = {"error": False, "user": user }
+  return jsonify(toret)
 
 @api.route('/admin/logs', methods=['GET'])
 def logs():
